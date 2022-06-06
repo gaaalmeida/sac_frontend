@@ -10,9 +10,10 @@ const DatePicker = ({ datas, setData }) => (
               <Row className="dateRow">
               {
                 datas.map((dt, key) => {
-                  const data = dt.data;
-                  const dia = data.split('&')[0];
-                  const horario = data.split('&')[1];
+                  const data = dt.date;
+                  const dia = data.split('T')[0];
+                  let horario = data.split('T')[1];
+                  horario = horario.split('.')[0];
 
                   return (
                     <Col key={key} lg={3} sm={6} xs={12}>
@@ -22,7 +23,7 @@ const DatePicker = ({ datas, setData }) => (
                        <span>
                         <strong>
                             {dia}
-                          </strong>
+                        </strong>
                        </span>
                         <span>
                           {horario}
@@ -37,7 +38,7 @@ const DatePicker = ({ datas, setData }) => (
               </Row>
             </>
           ) :
-          <h3>Nenhuma data disponível para agendamento.</h3>
+          <h3>Nenhuma data disponível atualmente para agendamento.</h3>
         }
       </>
   );
